@@ -3,7 +3,7 @@
   <li><a href="#">{{ request.user.username }}</a></li>
   <li><a href="{% url 'kitchen:home' %}">Home</a></li>
   <li><a href="#">Cooks</a></li>
-  <li><a href="#">Dishes</a></li>
+  <li><a href="{% url 'kitchen:dish-type-list' %}">Dish types</a></li>
   <li><form method="post" action="{% url 'logout' %}">
     {% csrf_token %}
     <button type="submit"><- Log out</button>

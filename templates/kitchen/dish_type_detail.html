@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ dishtype.name }}s</h1>
+  <ul>
+  {% for dish in object.dishes.all %}
+    <li><a href="{% url 'kitchen:dish-detail' dish.pk %}">{{ dish.name }}</a> - ${{ dish.price }}</li>
+    <li>{{ dish.description }}</li>
+    <li>Cooks: {% for cook in dish.cooks.all %} {{ cook.username }} {% endfor %}</li>
+    <hr>
+  {% endfor %}
+  </ul>
+{% endblock %}
