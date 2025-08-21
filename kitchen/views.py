@@ -1,28 +1,48 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Prefetch
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.forms import CookCreationForm
+from kitchen.forms import CookCreationForm, CookUpdateForm
 from kitchen.models import DishType, Dish
 
 
 class HomeView(LoginRequiredMixin, generic.TemplateView):
     template_name = "kitchen/home.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context["dish_types"] = DishType.objects.all()
+        context["dish"] = Dish.objects.all()
+        context["cooks"] = get_user_model().objects.all()
+        return context
+
 
 class RegistrationView(generic.FormView):
     template_name = "registration/registration.html"
     form_class = CookCreationForm
+    success_url = reverse_lazy("login")
+
+    def form_valid(self, form):
+        user = form.save()
+        return super().form_valid(form)
+
+
+class CookUpdateView(generic.UpdateView):
+    model = get_user_model()
+    form_class = CookUpdateForm
     success_url = reverse_lazy("kitchen:home")
+    template_name = "registration/cook_update.html"
 
 
-class DishTypeListView(generic.ListView):
+
+class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     template_name = "kitchen/dish_types.html"
 
 
-class DishTypeDetailView(generic.DetailView):
+class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = DishType
     template_name = "kitchen/dish_type_detail.html"
     queryset = DishType.objects.prefetch_related(

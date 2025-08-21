@@ -1,4 +1,6 @@
-<h3>KitchenHub</h3>
+{% load static %}
+<img src="{% static 'images/kitchenHub_logo.png' %}" alt="logo" width="100">
+  <h3>KitchenHub</h3>
 <ul>
   <li><a href="#">{{ request.user.username }}</a></li>
   <li><a href="{% url 'kitchen:home' %}">Home</a></li>
