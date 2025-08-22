@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+  <img src="{% static user.avatar %}" alt="avatar" width="100">
   <p>{{ cook.first_name }} {{ cook.last_name }}</p>
   <p>{{ cook.years_of_experience }}</p>
   <h5>Responsible for these dishes:</h5>

@@ -25,9 +25,20 @@ class CookAdminCreationForm(UserCreationForm):
 
 
 class CookUpdateForm(forms.ModelForm):
+    avatar = forms.ChoiceField(
+        choices=User.AVATAR_CHOICES,
+        widget=forms.RadioSelect,
+    )
     class Meta:
         model = User
-        fields = ["username", "email", "first_name", "last_name", "years_of_experience"]
+        fields = [
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "years_of_experience",
+            "avatar"
+        ]
 
 
 class DishCreateForm(forms.ModelForm):

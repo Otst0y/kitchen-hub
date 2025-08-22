@@ -10,6 +10,16 @@ and work on admin panel.
 
 
 class Cook(AbstractUser):
+    AVATAR_CHOICES = [
+        ("avatars/avatar_1.png", "Avatar_1"),
+        ("avatars/avatar_2.png", "Avatar_2")
+    ]
+
+    avatar = models.CharField(
+        max_length=100,
+        choices=AVATAR_CHOICES,
+        default="avatars/avatar_1.png"
+    )
     years_of_experience = models.PositiveIntegerField(default=0)
 
 
