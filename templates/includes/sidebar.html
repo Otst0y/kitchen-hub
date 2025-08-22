@@ -2,9 +2,12 @@
 <img src="{% static 'images/kitchenHub_logo.png' %}" alt="logo" width="100">
   <h3>KitchenHub</h3>
 <ul>
-  <li><a href="#">{{ request.user.username }}</a></li>
+  <li><a href="{% url 'kitchen:cook-detail' user.pk %}">{{ request.user.username }}</a></li>
+  <br>
+  <hr>
+  <br>
   <li><a href="{% url 'kitchen:home' %}">Home</a></li>
-  <li><a href="#">Cooks</a></li>
+  <li><a href="{% url 'kitchen:cook-list' %}">Cooks</a></li>
   <li><a href="{% url 'kitchen:dish-type-list' %}">Dish types</a></li>
   <li><form method="post" action="{% url 'logout' %}">
     {% csrf_token %}

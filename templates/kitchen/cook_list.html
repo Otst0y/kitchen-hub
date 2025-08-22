@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <ul>
+    {% for cook in cook_list %}
+      <li>{{ cook.first_name }} {{ cook.last_name }} <a href="{% url 'kitchen:cook-detail' cook.pk %}">View detail info</a></li>
+      <li>With {{ cook.years_of_experience }} year{{ cook.years_of_experience|pluralize }} of experience</li>
+      {% if request.user.is_staff %}
+        <a href="{% url 'kitchen:cook-update' user.pk %}">Update cook's info here</a>
+        <a href="{% url 'kitchen:cook-delete' user.pk %}">Delete</a>
+      {% endif %}
+      <hr>
+    {% endfor %}
+  </ul>
+{% endblock %}

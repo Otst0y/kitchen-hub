@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>{{ cook.first_name }} {{ cook.last_name }}</p>
+  <p>{{ cook.years_of_experience }}</p>
+  <h5>Responsible for these dishes:</h5>
+  {% for dish in cook.dishes.all %}
+    <p><a href="{% url 'kitchen:dish-detail' dish.pk %}">{{ dish.name }}</a></p>
+  {% endfor %}
+  {% if request.user.pk == cook.pk %}
+    <a href="{% url 'kitchen:cook-update' user.pk %}">Update your info here</a>
+  {% endif %}
+{% endblock %}

@@ -4,8 +4,11 @@
   <h1>Home page</h1>
   <h2>Hello, {% if user.first_name %} {{ user.first_name }} {% else %} cook{% endif %}!</h2>
 
-  <h3>We cook: {{ dish.count }} dish{{ dish.count|pluralize:"es" }}</h3>
-  <h3>We serve: {{ dish_types.count }} type{{ dish_types.count|pluralize }} of dish{{ dish_types.count|pluralize:"es" }}</h3>
+  <h3>We serve: {{ dish.count }} dish{{ dish.count|pluralize:"es" }}</h3>
+  <h3>We cook: {{ dish_types.count }} type{{ dish_types.count|pluralize }} of dish{{ dish_types.count|pluralize:"es" }}</h3>
   <h3>We have: {{ cooks.count }} cook{{ cooks.count|pluralize }}</h3>
-  <a href="{% url 'kitchen:cook-update' user.pk %}">Update your info here</a>
+  <br>
+  <h4>You have: {{ user.years_of_experience }} year{{ user.years_of_experience|pluralize }} of experience! WOW!</h4>
+  
+  <a href="{% url 'kitchen:dish-create' %}">Create a dish</a>
 {% endblock %}
