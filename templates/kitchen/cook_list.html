@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <h1>Cooks 
+    {% if request.user.is_staff %}
+        <a href="{% url 'kitchen:cook-admin-create' %}">Create cook</a>
+      {% endif %}
+  </h1>
   <ul>
     {% for cook in cook_list %}
       <li>{{ cook.first_name }} {{ cook.last_name }} <a href="{% url 'kitchen:cook-detail' cook.pk %}">View detail info</a></li>

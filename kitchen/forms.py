@@ -12,6 +12,18 @@ class CookCreationForm(UserCreationForm):
         fields = UserCreationForm.Meta.fields + ("years_of_experience",)
 
 
+class CookAdminCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = UserCreationForm.Meta.fields + (
+            "first_name",
+            "last_name",
+            "email",
+            "years_of_experience",
+            "is_staff",
+        )
+
+
 class CookUpdateForm(forms.ModelForm):
     class Meta:
         model = User

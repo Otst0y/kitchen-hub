@@ -4,7 +4,7 @@ from django.db.models import Prefetch
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.forms import CookCreationForm, CookUpdateForm, DishCreateForm
+from kitchen.forms import CookCreationForm, CookUpdateForm, DishCreateForm, CookAdminCreationForm
 from kitchen.models import DishType, Dish
 
 User = get_user_model()
@@ -29,6 +29,13 @@ class RegistrationView(generic.FormView):
     def form_valid(self, form):
         user = form.save()
         return super().form_valid(form)
+
+
+class CookAdminCreateView(generic.CreateView):
+    model = User
+    template_name = "kitchen/cook_admin_create.html"
+    form_class = CookAdminCreationForm
+    success_url = reverse_lazy("kitchen:cook-list")
 
 
 class CookUpdateView(generic.UpdateView):
