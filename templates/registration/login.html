@@ -3,20 +3,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Login</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+        crossorigin="anonymous">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body>
+<body class="page-login">
 
-<h1>Login</h1>
+<div class="login-container">
+  <h1>Login</h1>
   <form action="{% url 'login' %}" method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    <input type="submit" value="Login">
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary" value="Login">
+    </div>
     <a href="{% url 'kitchen:registration' %}">Create account</a>
     <input type="hidden" name="next" value="{{ next }}">
   </form>
+</div>
 
 </body>
 </html>

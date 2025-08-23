@@ -9,7 +9,7 @@ User = get_user_model()
 class CookCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = UserCreationForm.Meta.fields + ("years_of_experience",)
+        fields = UserCreationForm.Meta.fields
 
 
 class CookAdminCreationForm(UserCreationForm):

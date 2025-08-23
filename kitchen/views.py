@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Prefetch
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from kitchen.forms import CookCreationForm, CookUpdateForm, DishCreateForm, CookAdminCreationForm
@@ -106,3 +106,18 @@ class DishCreateView(generic.CreateView):
     template_name = "kitchen/dish_create.html"
     form_class = DishCreateForm
     success_url = reverse_lazy("kitchen:home")
+
+
+class DishUpdateView(generic.UpdateView):
+    model = Dish
+    template_name = "kitchen/dish_update.html"
+    fields = ["name", "description", "price", "dish_type", "cooks"]
+
+    def get_success_url(self):
+        return reverse("kitchen:dish-detail", kwargs={"pk": self.object.pk})
+
+
+class DishDeleteView(generic.DeleteView):
+    model = Dish
+    success_url = reverse_lazy("kitchen:dish-type-list")
+    template_name = "kitchen/dish_delete.html"

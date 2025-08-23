@@ -10,6 +10,6 @@
     <li>cook.username</li>
   {% endfor %}
   </ul>
-  <a href="#">Delete</a>
-  <a href="#">Update</a>
+  <a href="{% url 'kitchen:dish-delete' dish.pk %}">Delete</a>
+  <a href="{% url 'kitchen:dish-update' dish.pk %}">Update</a>
 {% endblock %}
