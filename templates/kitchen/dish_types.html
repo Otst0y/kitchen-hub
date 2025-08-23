@@ -1,29 +1,3 @@
-{#{% extends "base.html" %}#}
-{##}
-{#{% block content %}#}
-{#  <h1>Dish Types: <a href="{% url 'kitchen:dish-type-create' %}" style="float: right">Add</a></h1>#}
-{#  <table class="table table-hover">#}
-{#    <thead>#}
-{#    <tr>#}
-{#      <th scope="col">#</th>#}
-{#      <th scope="col">Type</th>#}
-{#      <th scope="col">Update</th>#}
-{#      <th scope="col">Delete</th>#}
-{#    </tr>#}
-{#    </thead>#}
-{#    <tbody>#}
-{#    {% for type in dishtype_list %}#}
-{#    <tr>#}
-{#      <th scope="row">{{ type.id }}</th>#}
-{#      <td><a href="{% url 'kitchen:dish-type-detail' type.pk %}">{{ type.name }}</a></td>#}
-{#      <td><a href="{% url 'kitchen:dish-type-update' type.pk %}" class="btn btn-primary">Update</a></td>#}
-{#      <td><a href="{% url 'kitchen:dish-type-delete' type.pk %}" class="btn btn-danger">Delete</a></td>#}
-{#    </tr>#}
-{#    {% endfor %}#}
-{#    </tbody>#}
-{#  </table>#}
-{##}
-{#{% endblock %}#}
 {% extends "base.html" %}
 
 {% block content %}
