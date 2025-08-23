@@ -42,6 +42,11 @@ class CookUpdateForm(forms.ModelForm):
 
 
 class DishCreateForm(forms.ModelForm):
+    cooks = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+
     class Meta:
         model = Dish
         fields = ["name", "description", "price", "dish_type", "cooks"]

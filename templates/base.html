@@ -9,12 +9,12 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid" >
   <div class="row">
     <div class="col-sm-2 min-vh-100">
       {% include "includes/sidebar.html" %}
     </div>
-    <div class="col-sm-10 min-vh-100" style="background-color: #F9F9F9">
+    <div class="col-sm-10 min-vh-100" >
       {% block content %}{% endblock %}
     </div>
   </div>

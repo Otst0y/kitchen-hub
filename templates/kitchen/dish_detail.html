@@ -7,9 +7,19 @@
   <li>{{ dish.dish_type }}</li>
   <ul>Cooks:
   {% for cook in dish.cooks.all %}
-    <li>cook.username</li>
+    <li>{{ cook.username }}</li>
   {% endfor %}
   </ul>
+  <form action="{% url 'kitchen:dish-assign' dish.pk %}" method="post">
+    {% csrf_token %}
+  <button type="submit">
+    {% if dish in user.dishes.all %}
+  	  Dismiss me from the dish
+  {% else %}
+  	  Assign me to the dish
+  {% endif %}
+  </button>
+  </form>
   <a href="{% url 'kitchen:dish-delete' dish.pk %}">Delete</a>
   <a href="{% url 'kitchen:dish-update' dish.pk %}">Update</a>
 {% endblock %}
