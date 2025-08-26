@@ -119,7 +119,6 @@ class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
     form_class = DishUpdateForm
     template_name = "kitchen/dish_update.html"
-    # fields = ["name", "description", "price", "dish_type", "cooks"]
 
     def get_success_url(self):
         return reverse("kitchen:dish-detail", kwargs={"pk": self.object.pk})

@@ -13,7 +13,13 @@
         <div class="card shadow-sm p-4">
           <div class="text-center mb-3">
             <img src="{% static cook.avatar %}" alt="avatar" class="rounded-circle mb-2" width="100">
-            <h4>{{ cook.first_name }} {{ cook.last_name }}</h4>
+            <h4>
+              {% if cook.first_name or cook.last_name %}
+                {{ cook.first_name }} {{ cook.last_name }}
+              {% else %}
+                Cook
+              {% endif %}
+            </h4>
             <p class="text-muted">{{ cook.years_of_experience }} year{{ cook.years_of_experience|pluralize }} of
               experience</p>
           </div>

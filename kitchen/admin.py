@@ -22,4 +22,4 @@ class DishTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Dish)
 class DishAdmin(admin.ModelAdmin):
-    list_display = ["name", "price",]
+    list_display = ["name", "price", ]

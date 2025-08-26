@@ -16,7 +16,11 @@
           <div class="card shadow-sm h-100">
             <div class="card-body">
               <h5 class="card-title">
-                {{ cook.first_name }} {{ cook.last_name }}
+                {% if cook.first_name or cook.last_name %}
+                  {{ cook.first_name }} {{ cook.last_name }}
+                {% else %}
+                  Cook
+                {% endif %}
                 <img alt="avatar" src="{% static cook.avatar %}" class="rounded-circle mr-2" width="50"
                      style="float: right">
               </h5>
