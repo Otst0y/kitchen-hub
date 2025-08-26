@@ -22,7 +22,12 @@ class HomeView(LoginRequiredMixin, generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context["dish_types"] = DishType.objects.all()
+        context["dish_types"] = DishType.objects.all().prefetch_related(
+            Prefetch(
+                "dishes",
+                queryset=Dish.objects.prefetch_related("cooks")
+            )
+        )
         context["dish"] = Dish.objects.all()
         context["cooks"] = User.objects.all()
         return context

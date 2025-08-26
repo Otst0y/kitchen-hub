@@ -10,6 +10,20 @@ User = get_user_model()
 MAX_YEARS_OF_EXPERIENCE = 60
 
 
+def validate_price(price):
+    if price <= 0:
+        raise ValidationError(
+            "Price must be greater than 0"
+        )
+
+
+def validate_years_of_experience(years):
+    if years > MAX_YEARS_OF_EXPERIENCE:
+        raise ValidationError(
+            f"Years of experience must be less than or equal {MAX_YEARS_OF_EXPERIENCE}"
+        )
+
+
 class CookCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
@@ -17,6 +31,11 @@ class CookCreationForm(UserCreationForm):
 
 
 class CookAdminCreationForm(UserCreationForm):
+    years_of_experience = forms.IntegerField(
+        min_value=0,
+        validators=[validate_years_of_experience]
+    )
+
     class Meta(UserCreationForm.Meta):
         model = User
         fields = UserCreationForm.Meta.fields + (
@@ -27,20 +46,15 @@ class CookAdminCreationForm(UserCreationForm):
             "is_staff",
         )
 
-    def clean_years_of_experience(self):
-        years_of_experience = self.cleaned_data["years_of_experience"]
-
-        if years_of_experience > MAX_YEARS_OF_EXPERIENCE:
-            raise ValidationError(
-                f"Years of experience must be less than or equal {MAX_YEARS_OF_EXPERIENCE}"
-            )
-        return years_of_experience
-
 
 class CookUpdateForm(forms.ModelForm):
     avatar = forms.ChoiceField(
         choices=User.AVATAR_CHOICES,
         widget=forms.RadioSelect,
+    )
+    years_of_experience = forms.IntegerField(
+        min_value=0,
+        validators=[validate_years_of_experience]
     )
 
     class Meta:
@@ -54,34 +68,17 @@ class CookUpdateForm(forms.ModelForm):
             "avatar"
         ]
 
-    def clean_years_of_experience(self):
-        years_of_experience = self.cleaned_data["years_of_experience"]
-
-        if years_of_experience > MAX_YEARS_OF_EXPERIENCE:
-            raise ValidationError(
-                f"Years of experience must be between 0 and {MAX_YEARS_OF_EXPERIENCE}"
-            )
-        return years_of_experience
-
 
 class DishCreateForm(forms.ModelForm):
     cooks = forms.ModelMultipleChoiceField(
         queryset=User.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
+    price = forms.DecimalField(validators=[validate_price])
 
     class Meta:
         model = Dish
         fields = ["name", "description", "price", "dish_type", "cooks"]
-
-    def clean_price(self):
-        price = self.cleaned_data["price"]
-
-        if price <= 0:
-            raise ValidationError(
-                "Price must be greater than 0"
-            )
-        return price
 
 
 class DishUpdateForm(forms.ModelForm):
@@ -89,16 +86,8 @@ class DishUpdateForm(forms.ModelForm):
         queryset=User.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
+    price = forms.DecimalField(validators=[validate_price])
 
     class Meta:
         model = Dish
         fields = ["name", "description", "price", "dish_type", "cooks"]
-
-    def clean_price(self):
-        price = self.cleaned_data["price"]
-
-        if price <= 0:
-            raise ValidationError(
-                "Price must be greater than 0"
-            )
-        return price
