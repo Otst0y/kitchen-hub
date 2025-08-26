@@ -16,7 +16,8 @@ from kitchen.views import (
     CookDeleteView,
     CookAdminCreateView,
     DishUpdateView,
-    DishDeleteView, DishToggleView,
+    DishDeleteView,
+    DishToggleView,
 )
 
 app_name = "kitchen"

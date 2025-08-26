@@ -1,20 +1,47 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-  <h1>Cooks 
-    {% if request.user.is_staff %}
-        <a href="{% url 'kitchen:cook-admin-create' %}">Create cook</a>
-      {% endif %}
-  </h1>
-  <ul>
-    {% for cook in cook_list %}
-      <li>{{ cook.first_name }} {{ cook.last_name }} <a href="{% url 'kitchen:cook-detail' cook.pk %}">View detail info</a></li>
-      <li>With {{ cook.years_of_experience }} year{{ cook.years_of_experience|pluralize }} of experience</li>
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h1 class="mb-0">Cooks</h1>
       {% if request.user.is_staff %}
-        <a href="{% url 'kitchen:cook-update' user.pk %}">Update cook's info here</a>
-        <a href="{% url 'kitchen:cook-delete' user.pk %}">Delete</a>
+        <a href="{% url 'kitchen:cook-admin-create' %}" class="btn btn-success">+ Create Cook</a>
       {% endif %}
-      <hr>
-    {% endfor %}
-  </ul>
+    </div>
+
+    <div class="row">
+      {% for cook in cook_list %}
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ cook.first_name }} {{ cook.last_name }}
+                <img alt="avatar" src="{% static cook.avatar %}" class="rounded-circle mr-2" width="50"
+                     style="float: right">
+              </h5>
+              <p class="card-text text-muted">
+                With {{ cook.years_of_experience }} year{{ cook.years_of_experience|pluralize }} of experience
+              </p>
+              <div class="d-flex">
+                <a href="{% url 'kitchen:cook-detail' cook.pk %}" class="btn btn-outline-primary btn-sm mr-1">
+                  View Detail
+                </a>
+                {% if request.user.is_staff %}
+                  <a href="{% url 'kitchen:cook-update' cook.pk %}" class="btn btn-outline-warning btn-sm mr-1">
+                    Update
+                  </a>
+                  <a href="{% url 'kitchen:cook-delete' cook.pk %}" class="btn btn-outline-danger btn-sm">
+                    Delete
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-center text-muted">No cooks found.</p>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}

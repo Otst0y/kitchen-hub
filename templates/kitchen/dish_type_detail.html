@@ -1,13 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>{{ dishtype.name }}s</h1>
-  <ul>
-  {% for dish in object.dishes.all %}
-    <li><a href="{% url 'kitchen:dish-detail' dish.pk %}">{{ dish.name }}</a> - ${{ dish.price }}</li>
-    <li>{{ dish.description }}</li>
-    <li>Cooks: {% for cook in dish.cooks.all %} {{ cook.username }} {% endfor %}</li>
-    <hr>
-  {% endfor %}
-  </ul>
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h1 class="mb-0">{{ dishtype.name }}s</h1>
+      <a href="{% url 'kitchen:dish-create' %}" class="btn btn-success">+ Create {{ dishtype.name }}</a>
+    </div>
+
+    <div class="row">
+      {% for dish in object.dishes.all %}
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="{% url 'kitchen:dish-detail' dish.pk %}" class="text-decoration-none">
+                  {{ dish.name }}
+                </a>
+              </h5>
+              <h6 class="card-subtitle mb-2 text-muted">${{ dish.price }}</h6>
+              <p class="card-text">{{ dish.description }}</p>
+              <p class="mb-1"><strong>Cooks:</strong>
+                {% for cook in dish.cooks.all %}
+                  <span class="badge badge-secondary">{{ cook.username }}</span>
+                {% empty %}
+                  <span class="text-muted">No cooks assigned</span>
+                {% endfor %}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-12">
+          <div class="alert alert-warning">No dishes available for this type.</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}

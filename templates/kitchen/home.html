@@ -1,50 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-5">
-  <div class="text-center mb-4">
-    <h1 class="display-4">Home page</h1>
-    <h2>
-      Hello,
-      {% if user.first_name %}
-        <span class="text-primary">{{ user.first_name }}</span>
-      {% else %}
-        <span class="text-primary">cook</span>
-      {% endif %}!
-    </h2>
-  </div>
+  <div class="container mt-5">
+    <div class="text-center mb-4">
+      <h1 class="display-4">Home page</h1>
+      <h2>
+        Hello,
+        {% if user.first_name %}
+          <span class="text-primary">{{ user.first_name }}</span>
+        {% else %}
+          <span class="text-primary">cook</span>
+        {% endif %}!
+      </h2>
+    </div>
 
-  <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
 
-      <div class="card shadow-sm mb-3">
-        <div class="card-body text-center">
-          <h5 class="card-title">Kitchen Stats</h5>
-          <p class="card-text">
-            <strong>We serve:</strong> {{ dish.count }} dish{{ dish.count|pluralize:"es" }} <br>
-            <strong>We cook:</strong> {{ dish_types.count }} type{{ dish_types.count|pluralize }} of dish{{ dish_types.count|pluralize:"es" }} <br>
-            <strong>We have:</strong> {{ cooks.count }} cook{{ cooks.count|pluralize }}
-          </p>
+        <div class="card shadow-sm mb-3">
+          <div class="card-body text-center">
+            <h5 class="card-title">Kitchen Stats</h5>
+            <p class="card-text">
+              <strong>We serve:</strong> {{ dish.count }} dish{{ dish.count|pluralize:"es" }} <br>
+              <strong>We cook:</strong> {{ dish_types.count }} type{{ dish_types.count|pluralize }} of
+              dish{{ dish_types.count|pluralize:"es" }} <br>
+              <strong>We have:</strong> {{ cooks.count }} cook{{ cooks.count|pluralize }}
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="card shadow-sm mb-3">
-        <div class="card-body text-center">
-          <h5 class="card-title">Your Experience</h5>
-          <p class="card-text">
-            You have: <strong>{{ user.years_of_experience }}</strong> year{{ user.years_of_experience|pluralize }} of experience! <br>
-            <span class="text-success font-weight-bold">WOW! 👏</span>
-          </p>
+        <div class="card shadow-sm mb-3">
+          <div class="card-body text-center">
+            <h5 class="card-title">Your Experience</h5>
+            <p class="card-text">
+              You have: <strong>{{ user.years_of_experience }}</strong> year{{ user.years_of_experience|pluralize }} of
+              experience! <br>
+              <span class="text-success font-weight-bold">WOW! 👏</span>
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="text-center">
-        <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary btn-lg">
-          🍳 Create a dish
-        </a>
-      </div>
+        <div class="text-center">
+          <a href="{% url 'kitchen:dish-create' %}" class="btn btn-primary btn-lg">
+            🍳 Create a dish
+          </a>
+        </div>
 
+      </div>
     </div>
   </div>
-</div>
 {% endblock %}

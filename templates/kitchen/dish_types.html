@@ -1,39 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h1>Dish Types</h1>
-  <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-success">Add</a>
-</div>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Dish Types</h1>
+    <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-success">+ Create Dish Type</a>
+  </div>
 
-<div class="table-responsive">
-  <table class="table table-striped table-hover table-bordered">
-    <thead class="thead-light">
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered">
+      <thead class="thead-light">
       <tr>
-        <th>#</th>
         <th>Type</th>
         <th>Update</th>
         <th>Delete</th>
       </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
       {% for type in dishtype_list %}
-      <tr>
-        <th scope="row">{{ type.id }}</th>
-        <td><a href="{% url 'kitchen:dish-type-detail' type.pk %}">{{ type.name }}</a></td>
-        <td>
-          <a href="{% url 'kitchen:dish-type-update' type.pk %}" class="btn btn-primary btn-sm">
-            <i class="bi bi-pencil-fill"></i> Update
-          </a>
-        </td>
-        <td>
-          <a href="{% url 'kitchen:dish-type-delete' type.pk %}" class="btn btn-danger btn-sm">
-            <i class="bi bi-trash-fill"></i> Delete
-          </a>
-        </td>
-      </tr>
+        <tr>
+          <td><a href="{% url 'kitchen:dish-type-detail' type.pk %}">{{ type.name }}</a></td>
+          <td>
+            <a href="{% url 'kitchen:dish-type-update' type.pk %}" class="btn btn-primary btn-sm">
+              <i class="bi bi-pencil-fill"></i> Update
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'kitchen:dish-type-delete' type.pk %}" class="btn btn-danger btn-sm">
+              <i class="bi bi-trash-fill"></i> Delete
+            </a>
+          </td>
+        </tr>
       {% endfor %}
-    </tbody>
-  </table>
-</div>
+      </tbody>
+    </table>
+  </div>
 {% endblock %}

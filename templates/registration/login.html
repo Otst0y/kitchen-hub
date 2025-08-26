@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body class="page-login">
-
 <div class="login-container">
   <h1>Login</h1>
   <form action="{% url 'login' %}" method="post">
@@ -24,6 +23,5 @@
     <input type="hidden" name="next" value="{{ next }}">
   </form>
 </div>
-
 </body>
 </html>

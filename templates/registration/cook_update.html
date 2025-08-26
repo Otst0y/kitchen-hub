@@ -4,26 +4,52 @@
 {% load static %}
 
 {% block content %}
-  <form method="post">
-    {% csrf_token %}
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-sm p-4">
+          <h3 class="text-center mb-4">Update Info</h3>
 
-    {{ form.username|as_crispy_field }}
-    {{ form.email|as_crispy_field }}
-    {{ form.first_name|as_crispy_field }}
-    {{ form.last_name|as_crispy_field }}
-    {{ form.years_of_experience|as_crispy_field }}
+          <form method="post">
+            {% csrf_token %}
 
-    <div>
-      <label>Choose your avatar:</label><br>
-      {% for choice in form.avatar.field.choices %}
-        <label style="display:inline-block; margin:5px; text-align:center;">
-          <input type="radio" name="{{ form.avatar.name }}" value="{{ choice.0 }}"
-                 {% if form.avatar.value == choice.0 %}checked{% endif %}>
-          <img src="{% static choice.0 %}" width="50" alt="{{ choice.1 }}">
-        </label>
-      {% endfor %}
+            {{ form.username|as_crispy_field }}
+            {{ form.email|as_crispy_field }}
+            {{ form.first_name|as_crispy_field }}
+            {{ form.last_name|as_crispy_field }}
+            {{ form.years_of_experience|as_crispy_field }}
+
+            <div class="mb-3">
+              <label class="form-label">Choose your avatar:</label>
+              <div class="d-flex flex-wrap">
+                {% for choice in form.avatar.field.choices %}
+                  <label class="avatar-label text-center m-2" style="cursor:pointer;">
+                    <input type="radio" name="{{ form.avatar.name }}" value="{{ choice.0 }}"
+                           {% if form.avatar.value == choice.0 %}checked{% endif %}>
+                    <img src="{% static choice.0 %}" width="60" alt="{{ choice.1 }}" class="img-thumbnail">
+                    <div class="small mt-1">{{ choice.1 }}</div>
+                  </label>
+                {% endfor %}
+              </div>
+            </div>
+
+            <a href="{% url 'kitchen:cook-list' %}" class="btn btn-secondary btn-block mt-3">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-block mt-3">
+              Update
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <input type="submit" value="Update">
-  </form>
+  <style>
+      .avatar-label input[type="radio"] {
+          display: none; /* приховати реальні radio */
+      }
+
+      .avatar-label input[type="radio"]:checked ~ img {
+          border: 2px solid #007bff;
+      }
+  </style>
 {% endblock %}

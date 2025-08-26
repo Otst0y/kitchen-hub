@@ -1,18 +1,17 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
-"""
-add avatar to user?
-
-After: make migrations, create superuser 
-and work on admin panel.
-"""
+from django.urls import reverse
 
 
 class Cook(AbstractUser):
     AVATAR_CHOICES = [
         ("avatars/avatar_1.png", "Avatar_1"),
-        ("avatars/avatar_2.png", "Avatar_2")
+        ("avatars/avatar_2.png", "Avatar_2"),
+        ("avatars/avatar_3.png", "Avatar_3"),
+        ("avatars/avatar_4.png", "Avatar_4"),
+        ("avatars/avatar_5.png", "Avatar_5"),
+        ("avatars/avatar_6.png", "Avatar_6"),
+        ("avatars/avatar_7.png", "Avatar_7"),
     ]
 
     avatar = models.CharField(
@@ -33,6 +32,9 @@ class DishType(models.Model):
 
     class Meta:
         ordering = ["name"]
+
+    def get_absolute_url(self):
+        return reverse("kitchen:dish-type-detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return self.name
@@ -55,6 +57,9 @@ class Dish(models.Model):
     class Meta:
         ordering = ["name"]
         verbose_name_plural = "Dishes"
+
+    def get_absolute_url(self):
+        return reverse("kitchen:dish-detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"{self.name} ${self.price}"
