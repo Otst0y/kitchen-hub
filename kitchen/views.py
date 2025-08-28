@@ -22,14 +22,14 @@ class HomeView(LoginRequiredMixin, generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context["dish_types"] = DishType.objects.all().prefetch_related(
+        context["dish_types"] = DishType.objects.prefetch_related(
             Prefetch(
                 "dishes",
                 queryset=Dish.objects.prefetch_related("cooks")
             )
         )
-        context["dish"] = Dish.objects.all()
-        context["cooks"] = User.objects.all()
+        context["dish"] = Dish.objects
+        context["cooks"] = User.objects
         return context
 
 
@@ -142,7 +142,7 @@ class DishToggleView(LoginRequiredMixin, generic.View):
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         cook = User.objects.get(id=request.user.id)
         dish = Dish.objects.get(id=pk)
-        if dish in cook.dishes.all():
+        if cook.dishes.filter(id=dish.id).exists():
             cook.dishes.remove(dish)
         else:
             cook.dishes.add(dish)
