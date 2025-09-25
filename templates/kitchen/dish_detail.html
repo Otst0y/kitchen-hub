@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <a href="{% url 'kitchen:dish-type-detail' dish.dish_type.pk %}"
+     class="btn btn-secondary position-absolute mt-4">Go to dishes</a>
+
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-sm p-4">
+          <h2 class="text-center mb-4">{{ dish.name }}</h2>
+
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item"><strong>Price:</strong> ${{ dish.price }}</li>
+            <li class="list-group-item"><strong>Type:</strong> {{ dish.dish_type }}</li>
+            <li class="list-group-item"><strong>Description:</strong> {{ dish.description }}</li>
+          </ul>
+
+          <h5 class="mt-3">Cooks:</h5>
+          <ul class="list-group list-group-flush mb-3">
+            {% for cook in dish.cooks.all %}
+              <li class="list-group-item">{{ cook.username }}</li>
+            {% empty %}
+              <li class="list-group-item text-muted">No cooks assigned yet</li>
+            {% endfor %}
+          </ul>
+
+          <form action="{% url 'kitchen:dish-assign' dish.pk %}" method="post" class="mb-3">
+            {% csrf_token %}
+            {% if dish in user.dishes.all %}
+              <button type="submit" class="btn btn-warning">
+                <i class="bi bi-person-dash-fill"></i> Dismiss me from this dish
+              </button>
+            {% else %}
+              <button type="submit" class="btn btn-success">
+                <i class="bi bi-person-plus-fill"></i> Assign me to this dish
+              </button>
+            {% endif %}
+            <a href="{% url 'kitchen:dish-update' dish.pk %}" class="btn btn-primary">
+              <i class="bi bi-pencil-fill"></i> Update
+            </a>
+            <a href="{% url 'kitchen:dish-delete' dish.pk %}" class="btn btn-danger">
+              <i class="bi bi-trash-fill"></i> Delete
+            </a>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

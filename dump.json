@@ -1,0 +1,253 @@
+[
+{
+    "model": "kitchen.cook",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$SPaf33eBExQjW4ILrEJMlC$Myre1AMA1Ta8H+AvpQx8ODPkqbEYnFN+fgtypTzJnfQ=",
+        "last_login": "2025-08-27T08:48:01.121Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "Bruce",
+        "last_name": "Banner",
+        "email": "admin@admin.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-08-21T08:47:34.414Z",
+        "avatar": "avatars/avatar_1.png",
+        "years_of_experience": 10,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "kitchen.cook",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$ixQmed1oPSIFvaiPPDTiUq$x6pKyzRKahdFji73syJaPbx4NUgeN/e4otgKdgDKIAE=",
+        "last_login": "2025-08-23T10:09:27.480Z",
+        "is_superuser": false,
+        "username": "peter",
+        "first_name": "Peter",
+        "last_name": "Parker",
+        "email": "your-friendly-neighborhood@spider-man.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-08-21T14:46:57.181Z",
+        "avatar": "avatars/avatar_3.png",
+        "years_of_experience": 2,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "kitchen.cook",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$hyq1pG5J7l7nty9GQUcI6T$aS8USJfp9h55ruJiIPBxODb0dReo215V8gdiGVVJZNg=",
+        "last_login": "2025-08-21T16:39:24.806Z",
+        "is_superuser": false,
+        "username": "laerna",
+        "first_name": "Olya",
+        "last_name": "",
+        "email": "laerna@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-08-21T16:39:17.366Z",
+        "avatar": "avatars/avatar_7.png",
+        "years_of_experience": 31,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "kitchen.cook",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$zdjoeyCSa8M9k1tcbzNnAe$cgg5GdLMyoHWmUjC6ML9B+Na/fMfRCfjprXahImc1vQ=",
+        "last_login": "2025-08-22T14:48:02.174Z",
+        "is_superuser": false,
+        "username": "dianochka",
+        "first_name": "Dianochka",
+        "last_name": "Kotichka",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-08-21T17:30:50.839Z",
+        "avatar": "avatars/avatar_2.png",
+        "years_of_experience": 25,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "kitchen.cook",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$Ba8gHIeS6YtTWFEBpuRji2$O1BNQn3YfGovtmY52vq+n1PRRPkvToQzUlg+2KycNgY=",
+        "last_login": "2025-08-26T11:28:11.398Z",
+        "is_superuser": false,
+        "username": "richards",
+        "first_name": "Rid",
+        "last_name": "Richards",
+        "email": "mr.fantastic@fantastic4.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-08-26T08:00:08.669Z",
+        "avatar": "avatars/avatar_1.png",
+        "years_of_experience": 20,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "kitchen.cook",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$ZzrBniu8Vc4x3ZpaAv7FD7$Oj23HMIpQAFuPTovtjEqaQujgZvVYTt2nlo/yaqXjVc=",
+        "last_login": "2025-08-26T15:34:27.767Z",
+        "is_superuser": false,
+        "username": "Vitalii",
+        "first_name": "Vitalii",
+        "last_name": "Povar",
+        "email": "vitalii@povar.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-08-26T15:34:20.248Z",
+        "avatar": "avatars/avatar_6.png",
+        "years_of_experience": 0,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "kitchen.dishtype",
+    "pk": 2,
+    "fields": {
+        "name": "Salad"
+    }
+},
+{
+    "model": "kitchen.dishtype",
+    "pk": 4,
+    "fields": {
+        "name": "Soup"
+    }
+},
+{
+    "model": "kitchen.dishtype",
+    "pk": 6,
+    "fields": {
+        "name": "Dessert"
+    }
+},
+{
+    "model": "kitchen.dishtype",
+    "pk": 7,
+    "fields": {
+        "name": "Appetizer"
+    }
+},
+{
+    "model": "kitchen.dish",
+    "pk": 1,
+    "fields": {
+        "name": "Caesar salad",
+        "description": "A Caesar salad, also known as Caesar's salad, is a green salad of romaine lettuce and croutons dressed with lemon juice, olive oil, eggs, Worcestershire sauce, anchovies, garlic, Dijon mustard, Parmesan and black pepper.",
+        "price": "9.50",
+        "dish_type": 2,
+        "cooks": [
+            1
+        ]
+    }
+},
+{
+    "model": "kitchen.dish",
+    "pk": 2,
+    "fields": {
+        "name": "Ramen",
+        "description": "Soy sauce ramen - Authentic Japanese recipe | Kikkoman\r\nBest Homemade Ramen Recipe - How to Make Homemade Shoyu Ramen\r\nRamen - Wikipedia\r\nRamen is a Japanese noodle dish with roots in Chinese noodle dishes. It is a part of Japanese Chinese cuisine. It includes Chinese-style alkaline wheat noodles served in several flavors of broth.",
+        "price": "20.50",
+        "dish_type": 4,
+        "cooks": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "kitchen.dish",
+    "pk": 3,
+    "fields": {
+        "name": "Pho",
+        "description": "Phở or pho is a Vietnamese soup dish consisting of broth, rice noodles, herbs, and meat – usually beef, and sometimes chicken. Phở is a popular food in Vietnam where it is served in households, street-stalls, and restaurants nationwide.",
+        "price": "19.50",
+        "dish_type": 4,
+        "cooks": [
+            2,
+            3,
+            4
+        ]
+    }
+},
+{
+    "model": "kitchen.dish",
+    "pk": 5,
+    "fields": {
+        "name": "Sukiyaki",
+        "description": "Sukiyaki is a Japanese dish that is prepared and served in the nabemono style. It consists of meat which is slowly cooked or simmered at the table, alongside vegetables and other ingredients, in a shallow iron pot in a mixture of soy sauce, sugar, and mirin.",
+        "price": "16.40",
+        "dish_type": 4,
+        "cooks": [
+            1,
+            2,
+            3,
+            4,
+            6
+        ]
+    }
+},
+{
+    "model": "kitchen.dish",
+    "pk": 6,
+    "fields": {
+        "name": "Cream of mushroom soup",
+        "description": "Cream of mushroom soup is a simple type of soup where a basic roux is thinned with cream or milk and then mushrooms or mushroom broth are added. In North America, it is a common canned condensed soup. Cream of mushroom soup is often used as a base ingredient in casseroles and comfort foods.",
+        "price": "13.00",
+        "dish_type": 4,
+        "cooks": [
+            1,
+            2,
+            6
+        ]
+    }
+},
+{
+    "model": "kitchen.dish",
+    "pk": 7,
+    "fields": {
+        "name": "Minestrone",
+        "description": "Minestrone or minestrone di verdure is a thick vegetable soup of Italian origin. It typically includes onions, carrots, celery, potatoes, cabbage, tomatoes, often legumes, such as beans, chickpeas or fava beans, and sometimes pasta or rice,[1] and is characterized by the mixture of different vegetables and not very fine pieces.",
+        "price": "11.00",
+        "dish_type": 4,
+        "cooks": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "kitchen.dish",
+    "pk": 14,
+    "fields": {
+        "name": "Grilled cheese",
+        "description": "Put cheese between two slices of bread and grill it.",
+        "price": "1.25",
+        "dish_type": 7,
+        "cooks": [
+            3,
+            4,
+            8
+        ]
+    }
+}
+]
